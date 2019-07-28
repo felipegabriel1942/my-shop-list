@@ -4,6 +4,7 @@ import ListTable from '../../components/ListTable/ListTable';
 import {Row, Col } from 'reactstrap';
 import IncludeListButton from '../../components/Buttons/IncludeListButton/IncludeListButton';
 import BackButton from '../../components/Buttons/BackButton/BackButton';
+import ProdutoForm from '../../components/Forms/ProdutoForm/ProdutoForm';
 
 
 class ShopList extends Component {
@@ -39,13 +40,15 @@ class ShopList extends Component {
 
         let content = null;
         let navigationButton = null;
+
         if(this.state.modoCriacaoLista) {
-            content = null;
+            content = <ProdutoForm></ProdutoForm>;
             navigationButton = <BackButton
             clicked={this.criacaoListaHandler}></BackButton>
         } else {
             navigationButton = <IncludeListButton 
                 clicked={this.criacaoListaHandler}></IncludeListButton>
+                console.log(this.state.listas);
             content = <ListTable 
             lista={this.state.listas}/>
         }

@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Table, Card} from 'reactstrap';
-import classes from './ListTable.module.css'
+import classes from './ListTableProducts.module.css'
 
-class ListTable extends Component {
+class ListTableProduct extends Component {
   
   render() {
     // this.props.lista.map é o primo do ngFor do react ele precisa de uma key
@@ -13,14 +13,16 @@ class ListTable extends Component {
         <Table hover>
           <thead>
             <tr>
-              <th>Listas cadastradas</th>
+              <th>Produto</th>
+              <th>Quantidade</th>
             </tr>
           </thead>
           <tbody>
             {
-              this.props.lista.map(listas => (
-                <tr key={listas.id}>
-                  <td>{listas.nome}</td>
+              this.props.lista.map((lista, index) => (
+                <tr key={index}>
+                  <td>{lista.listaProdutos.produto}</td>
+                  <td>{lista.listaProdutos.quantidade}</td>
                 </tr>
               ))
             }
@@ -31,4 +33,4 @@ class ListTable extends Component {
   }
 }
 
-export default ListTable;
+export default ListTableProduct;

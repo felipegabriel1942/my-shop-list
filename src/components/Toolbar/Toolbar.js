@@ -9,7 +9,7 @@ const Toolbar = (props) => (
         <Navbar 
             color="success" 
             expand="light" 
-            className={classes.Logo}>
+            className={ [classes.Logo, classes.Toolbar].join(' ')}>
             <NavbarBrand><Logo />MyShopList</NavbarBrand>
         </Navbar>
     </div>
