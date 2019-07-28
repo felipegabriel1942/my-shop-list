@@ -3,13 +3,13 @@ import { Button } from 'reactstrap';
 
 
 
-const IncludeListButton = (props) => (
+const BackButton = (props) => (
     <Button 
         color="primary"
         className="float-right" 
         style={{marginRight: '10px'}}
         onClick={props.clicked}
-        > + Criar lista</Button>
+        >Voltar</Button>
 );
 
-export default  IncludeListButton;
+export default BackButton;

@@ -3,6 +3,7 @@ import Toolbar from '../../components/Toolbar/Toolbar';
 import ListTable from '../../components/ListTable/ListTable';
 import {Row, Col } from 'reactstrap';
 import IncludeListButton from '../../components/Buttons/IncludeListButton/IncludeListButton';
+import BackButton from '../../components/Buttons/BackButton/BackButton';
 
 
 class ShopList extends Component {
@@ -21,11 +22,34 @@ class ShopList extends Component {
                 id: 3,
                 nome: 'Lista 3 cadastrada'
             },
+            {
+                id: 4,
+                nome: 'Lista 4 cadastrada'
+            }
 
-        ]
+        ],
+        modoCriacaoLista: false
+    }
+
+    criacaoListaHandler = () => {
+        this.setState({modoCriacaoLista: !this.state.modoCriacaoLista});
     }
 
     render() {
+
+        let content = null;
+        let navigationButton = null;
+        if(this.state.modoCriacaoLista) {
+            content = null;
+            navigationButton = <BackButton
+            clicked={this.criacaoListaHandler}></BackButton>
+        } else {
+            navigationButton = <IncludeListButton 
+                clicked={this.criacaoListaHandler}></IncludeListButton>
+            content = <ListTable 
+            lista={this.state.listas}/>
+        }
+
         return(
             <div>
                 <Row>
@@ -41,7 +65,7 @@ class ShopList extends Component {
                         md="12" 
                         style={{paddingRight: 0, marginTop: '5%', marginBottom: '2%'}}
                         className="clearfix">
-                        <IncludeListButton></IncludeListButton>
+                        {navigationButton}
                     </Col>
                 </Row>
 
@@ -49,8 +73,7 @@ class ShopList extends Component {
                     <Col 
                         md="12" 
                         style={{paddingRight: 0}}>
-                        <ListTable 
-                            lista={this.state.listas}/>
+                           {content}                  
                     </Col>
                 </Row>
             </div>
