@@ -5,14 +5,15 @@ import Logo from '../Logo/Logo';
 
 
 const Toolbar = (props) => (
-    <div>
+
         <Navbar 
             color="success" 
-            expand="light" 
+            expand="light"
+            sticky="top" 
             className={ [classes.Logo, classes.Toolbar].join(' ')}>
             <NavbarBrand><Logo />MyShopList</NavbarBrand>
         </Navbar>
-    </div>
+
 );
 
 export default Toolbar;

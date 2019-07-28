@@ -16,7 +16,7 @@ class ListTable extends Component {
             {
               this.props.lista.map(listas => (
                 <tr key={listas.id}>
-                  <td>{listas.nome}</td>
+                  <td>{listas.nomeLista}</td>
                 </tr>
               ))
             }

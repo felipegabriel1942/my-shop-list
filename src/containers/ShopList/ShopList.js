@@ -12,18 +12,22 @@ class ShopList extends Component {
     state = {
         lista: {
             id: 0,
-            nomeLista: ''
+            nomeLista: '',
+            listaProdutos: []
         },
         listas: [],
         modoCriacaoLista: false
     }
 
     addListaHandler = (lista) => {
-        console.log('cheguei aqui')
+        let temp = this.state.listas;
+        temp.push(lista);
+        this.setState({listas: temp, modoCriacaoLista: !this.state.modoCriacaoLista})
+        console.log(this.state);
     }
 
     criacaoListaHandler = () => {
-        this.setState({modoCriacaoLista: !this.state.modoCriacaoLista});
+        this.setState({modoCriacaoLista: !this.state.modoCriacaoLista});   
     }
 
     render() {
@@ -45,27 +49,20 @@ class ShopList extends Component {
 
         return(
             <div>
-                <Row>
+                <Toolbar />
+                <Row style={{marginLeft: 0, marginRight: 0}}>
                     <Col 
                         md="12" 
-                        style={{paddingRight: 0}}>
-                        <Toolbar />
-                    </Col>                    
-                </Row>
-
-                <Row>
-                    <Col 
-                        md="12" 
-                        style={{paddingRight: 0, marginTop: '5%', marginBottom: '2%'}}
+                        style={{paddingLeft: 0, paddingRight: 0, marginTop: '5%', marginBottom: '2%'}}
                         className="clearfix">
                         {navigationButton}
                     </Col>
                 </Row>
 
-                <Row>
+                <Row style={{marginLeft: 0, marginRight: 0}}>
                     <Col 
                         md="12" 
-                        style={{paddingRight: 0}}>
+                        style={{paddingLeft: 0, paddingRight: 0}}>
                            {content}                  
                     </Col>
                 </Row>

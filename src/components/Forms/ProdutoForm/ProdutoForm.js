@@ -46,6 +46,16 @@ class ProdutoForm extends Component {
        this.setState({lista: temp})
     }
 
+    getNomeListaInputHandler = (event) => {
+        let nomeLista = event.target.value;
+        this.setState(prevState => ({
+            lista:  {
+                ...prevState.lista,
+                nomeLista: nomeLista
+            }
+        }));
+    }
+
     render() {
         return (
             <div style={{margin: 0}}>
@@ -55,7 +65,10 @@ class ProdutoForm extends Component {
                         <Form>
                             <FormGroup>
                                 <Label for="nomeLista">Nome da lista:</Label>
-                                <Input type="text" />
+                                <Input 
+                                    type="text" 
+                                    value={this.state.lista.nomeLista} 
+                                    onChange={this.getNomeListaInputHandler}/>
                                 <Label for="nomeLista">Produto:</Label>
                                 <Input 
                                     type="select" 
@@ -95,7 +108,7 @@ class ProdutoForm extends Component {
                 </Card>
                 <ListTableProduct 
                     lista={this.state.lista.listaProdutos}/>
-                <SaveListButton clicked={() => this.props.listaAdicionada()}/>           
+                <SaveListButton clicked={() => this.props.listaAdicionada(this.state.lista)}/>           
             </div>            
         )
     }
