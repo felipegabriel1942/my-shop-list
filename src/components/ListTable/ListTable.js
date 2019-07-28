@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Table, Card} from 'reactstrap';
+import {Table, Card, CardHeader} from 'reactstrap';
 import classes from './ListTable.module.css'
 
 class ListTable extends Component {
@@ -10,12 +10,8 @@ class ListTable extends Component {
     return (
       <Card 
         className={classes.Card}>
+        <CardHeader style={{fontWeight: 'bold', textAlign: 'center'}}>Listas cadastradas</CardHeader> 
         <Table hover>
-          <thead>
-            <tr>
-              <th>Listas cadastradas</th>
-            </tr>
-          </thead>
           <tbody>
             {
               this.props.lista.map(listas => (

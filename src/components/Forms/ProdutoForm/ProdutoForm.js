@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
-import { Card, CardBody, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Card, CardBody, CardHeader, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import classes from './ProdutoForm.module.css';
 import IncludeProductListButton from '../../Buttons/IncludeProductListButton/IncludeProductListButton';
 import ListTableProduct from '../../ListTableProducts/ListTableProducts';
+import SaveListButton from '../../Buttons/SaveListButton/SaveListButton';
 
 class ProdutoForm extends Component {
 
     state = {
         produtoLista: {
             produto: 'Arroz',
-            quantidade: 1 
+            quantidade: '1'
         },
-        listaProdutos: []
+        lista: {
+            id: 0,
+            nomeLista: '',
+            listaProdutos: []
+        }
+        
     }
 
     produtoChangeHandler = (event) => {
@@ -35,15 +41,16 @@ class ProdutoForm extends Component {
     }
 
     includeProductToListHandler = () => {
-       let listaProdutos = [...this.state.listaProdutos];
-       listaProdutos.push({listaProdutos: this.state.produtoLista});
-       this.setState({listaProdutos});
+       let temp = this.state.lista;
+       temp.listaProdutos.push(this.state.produtoLista);
+       this.setState({lista: temp})
     }
 
     render() {
         return (
             <div style={{margin: 0}}>
                 <Card className={classes.Card}>
+                <CardHeader style={{fontWeight: 'bold', textAlign: 'center'}}>Cadastre um produto</CardHeader> 
                     <CardBody>
                         <Form>
                             <FormGroup>
@@ -87,7 +94,8 @@ class ProdutoForm extends Component {
                     </CardBody>
                 </Card>
                 <ListTableProduct 
-                    lista={this.state.listaProdutos}/>           
+                    lista={this.state.lista.listaProdutos}/>
+                <SaveListButton clicked={() => this.props.listaAdicionada()}/>           
             </div>            
         )
     }

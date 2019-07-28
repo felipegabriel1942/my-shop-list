@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Table, Card} from 'reactstrap';
+import {Table, Card, CardHeader} from 'reactstrap';
 import classes from './ListTableProducts.module.css'
 
 class ListTableProduct extends Component {
@@ -10,6 +10,7 @@ class ListTableProduct extends Component {
     return (
       <Card 
         className={classes.Card}>
+        <CardHeader style={{fontWeight: 'bold', textAlign: 'center'}}>Produtos na lista</CardHeader>
         <Table hover>
           <thead>
             <tr>
@@ -21,8 +22,8 @@ class ListTableProduct extends Component {
             {
               this.props.lista.map((lista, index) => (
                 <tr key={index}>
-                  <td>{lista.listaProdutos.produto}</td>
-                  <td>{lista.listaProdutos.quantidade}</td>
+                  <td>{lista.produto}</td>
+                  <td>{lista.quantidade}</td>
                 </tr>
               ))
             }

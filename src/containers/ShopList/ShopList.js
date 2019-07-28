@@ -10,26 +10,16 @@ import ProdutoForm from '../../components/Forms/ProdutoForm/ProdutoForm';
 class ShopList extends Component {
 
     state = {
-        listas: [
-            {
-                id: 1,
-                nome: 'Lista 1 cadastrada'
-            },
-            {
-                id: 2,
-                nome: 'Lista 2 cadastrada'
-            },
-            {
-                id: 3,
-                nome: 'Lista 3 cadastrada'
-            },
-            {
-                id: 4,
-                nome: 'Lista 4 cadastrada'
-            }
-
-        ],
+        lista: {
+            id: 0,
+            nomeLista: ''
+        },
+        listas: [],
         modoCriacaoLista: false
+    }
+
+    addListaHandler = (lista) => {
+        console.log('cheguei aqui')
     }
 
     criacaoListaHandler = () => {
@@ -42,13 +32,13 @@ class ShopList extends Component {
         let navigationButton = null;
 
         if(this.state.modoCriacaoLista) {
-            content = <ProdutoForm></ProdutoForm>;
+            content = <ProdutoForm
+                listaAdicionada={this.addListaHandler}></ProdutoForm>;
             navigationButton = <BackButton
             clicked={this.criacaoListaHandler}></BackButton>
         } else {
             navigationButton = <IncludeListButton 
                 clicked={this.criacaoListaHandler}></IncludeListButton>
-                console.log(this.state.listas);
             content = <ListTable 
             lista={this.state.listas}/>
         }
