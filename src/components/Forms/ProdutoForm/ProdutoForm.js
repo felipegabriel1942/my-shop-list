@@ -4,6 +4,7 @@ import classes from './ProdutoForm.module.css';
 import IncludeProductListButton from '../../Buttons/IncludeProductListButton/IncludeProductListButton';
 import ListTableProduct from '../../ListTableProducts/ListTableProducts';
 import SaveListButton from '../../Buttons/SaveListButton/SaveListButton';
+import axios from 'axios';
 
 class ProdutoForm extends Component {
 
@@ -54,6 +55,18 @@ class ProdutoForm extends Component {
                 nomeLista: nomeLista
             }
         }));
+    }
+
+    saveListHandler = () => {
+        const listas = {
+            id: Math.random() * (1000 - 1) + 1,
+            nomeLista: this.state.lista.nomeLista,
+            listaProdutos: this.state.lista.listaProdutos
+        }
+        axios.post('https://my-shop-list-e15f8.firebaseio.com/listas.json', listas)
+        .then(response => {
+            this.props.listaAdicionada();
+        });
     }
 
     render() {
@@ -108,7 +121,8 @@ class ProdutoForm extends Component {
                 </Card>
                 <ListTableProduct 
                     lista={this.state.lista.listaProdutos}/>
-                <SaveListButton clicked={() => this.props.listaAdicionada(this.state.lista)}/>           
+                <SaveListButton
+                    clicked={this.saveListHandler} />           
             </div>            
         )
     }

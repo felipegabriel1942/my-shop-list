@@ -5,6 +5,7 @@ import {Row, Col } from 'reactstrap';
 import IncludeListButton from '../../components/Buttons/IncludeListButton/IncludeListButton';
 import BackButton from '../../components/Buttons/BackButton/BackButton';
 import ProdutoForm from '../../components/Forms/ProdutoForm/ProdutoForm';
+import axios from 'axios';
 
 
 class ShopList extends Component {
@@ -19,15 +20,33 @@ class ShopList extends Component {
         modoCriacaoLista: false
     }
 
-    addListaHandler = (lista) => {
-        let temp = this.state.listas;
-        temp.push(lista);
-        this.setState({listas: temp, modoCriacaoLista: !this.state.modoCriacaoLista})
-        console.log(this.state);
+    addListaHandler = () => {
+        this.getListaHandler();
+        this.setState({modoCriacaoLista: !this.state.modoCriacaoLista});
     }
 
     criacaoListaHandler = () => {
         this.setState({modoCriacaoLista: !this.state.modoCriacaoLista});   
+    }
+
+    getListaHandler = () => {
+        axios.get('https://my-shop-list-e15f8.firebaseio.com/listas.json')
+        .then(response => {
+            let lista = [];
+            Object.keys(response.data).map(
+                chave => {
+                    lista.push(response.data[chave]);
+                }
+            )
+            this.setState({listas: lista});
+        })
+        .catch(error => {
+            
+        });
+    }
+
+    componentDidMount () {
+       this.getListaHandler();
     }
 
     render() {
